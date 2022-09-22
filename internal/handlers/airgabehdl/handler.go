@@ -23,7 +23,7 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 
 func (hdl *CLHandler) Run(args []string) *Response {
 	// requires [Action] [Starting Seat] [Number of Consecutive Seats]
-	if len(args) == 0 || len(args) < 3 {
+	if len(args) < 3 {
 		if containsHelp(args) {
 			return &Response{Status: help}
 		}
