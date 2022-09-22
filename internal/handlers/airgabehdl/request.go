@@ -1,5 +1,12 @@
 package airgabehdl
 
+type requestSubCommand string
+
+const (
+	book   requestSubCommand = "BOOK"
+	cancel requestSubCommand = "CANCEL"
+)
+
 type Request struct {
 	Action                string
 	StartingSeat          string

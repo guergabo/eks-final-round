@@ -1,18 +1,16 @@
 package airgabehdl
 
-type airplaneRequestStatus string
+type requestStatus string
 
 const (
-	success airplaneRequestStatus = "SUCCESS"
-	fail    airplaneRequestStatus = "FAIL"
+	success requestStatus = "SUCCESS"
+	fail    requestStatus = "FAIL"
 )
 
 type Response struct {
-	Status airplaneRequestStatus
+	Status requestStatus
 }
 
-func NewResponse(ars airplaneRequestStatus) *Response {
-	return &Response{
-		Status: ars,
-	}
+func NewResponse(ars requestStatus) *Response {
+	return &Response{Status: ars}
 }
