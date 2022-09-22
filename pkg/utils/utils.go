@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
-
-	"github.com/guergabo/eks-final-round/internal/core/domain"
 )
 
 func ReadJSONFile(filename string) ([]byte, error) {
@@ -23,7 +21,7 @@ func ReadJSONFile(filename string) ([]byte, error) {
 	return bs, nil
 }
 
-func WriteJSONFile(filename string, data *domain.Airplane) error {
+func WriteJSONFile(filename string, data interface{}) error {
 	fileReader, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0660)
 	if err != nil {
 		return err

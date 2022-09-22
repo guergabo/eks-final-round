@@ -128,7 +128,7 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 	return nil
 }
 
-// helpers
+// private functions
 func loadState() (*domain.Airplane, error) {
 	jsonFilePath := initial
 	if _, err := os.Stat(current); err == nil {
@@ -138,7 +138,6 @@ func loadState() (*domain.Airplane, error) {
 	byteValue, err := utils.ReadJSONFile(jsonFilePath)
 	if err != nil {
 		return nil, err
-		// return nil, errors.New("internal server error - reading json")
 	}
 
 	airplane := domain.NewAirplane()
