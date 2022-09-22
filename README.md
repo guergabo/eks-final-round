@@ -13,12 +13,19 @@ cd bin/
 ./airgabe CANCEL A0 1 --help --show
 ```
 
-### Test Expected Output
+### Run Tests
+#### Test Sample Expected Output
 ```bash 
 make build
 cd bin/
 ../scripts/test.sh
 ```
+#### Unit Test Output
+```bash
+go test ./internal/... -cover
+```
 
 ### Architecture Overview  
+
+
 
