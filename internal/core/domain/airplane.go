@@ -37,7 +37,5 @@ type Airplane struct {
 }
 
 func NewAirplane() *Airplane {
-	return &Airplane{
-		Rows: make(map[rowID]Row, 20),
-	}
+	return &Airplane{}
 }

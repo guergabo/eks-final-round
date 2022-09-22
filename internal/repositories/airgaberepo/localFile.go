@@ -3,6 +3,13 @@
 // from the core into a specific technology request on the actor
 package airgaberepo
 
+import (
+	"encoding/json"
+
+	"github.com/guergabo/eks-final-round/internal/core/domain"
+	"github.com/guergabo/eks-final-round/pkg/utils"
+)
+
 type localFile struct {
 	fileName string
 }
@@ -20,4 +27,15 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 
 func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) error {
 	return nil
+}
+
+func loadFile() *domain.Airplane {
+	byteValue := utils.MustRead(utils.ReadJSONFile("init-state.json"))
+	airplane := domain.NewAirplane()
+	json.Unmarshal(byteValue, airplane)
+	return airplane
+}
+
+func main() {
+	loadFile()
 }
