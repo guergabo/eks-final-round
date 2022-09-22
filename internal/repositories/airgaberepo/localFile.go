@@ -8,6 +8,7 @@ import (
 	"errors"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/guergabo/eks-final-round/internal/core/domain"
 	"github.com/guergabo/eks-final-round/pkg/utils"
@@ -37,8 +38,8 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 		return err
 	}
 
-	// check if row is valid
-	row := startingSeat[:1]
+	// check if row is valid - making row case insensitive
+	row := strings.ToUpper(startingSeat[:1])
 	if !airplane.IsValidRow(row) {
 		return errors.New("could not accomodate customer request")
 	}
@@ -72,8 +73,8 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 		return err
 	}
 
-	// check if row is valid
-	row := startingSeat[:1]
+	// check if row is valid - case insensitive
+	row := strings.ToUpper(startingSeat[:1])
 	if !airplane.IsValidRow(row) {
 		return errors.New("could not accomodate customer request")
 	}

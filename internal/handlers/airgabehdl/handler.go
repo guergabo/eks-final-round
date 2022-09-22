@@ -5,6 +5,7 @@ package airgabehdl
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/guergabo/eks-final-round/internal/core/ports"
 )
@@ -33,7 +34,7 @@ func (hdl *CLHandler) Run(args []string) *Response {
 	if err != nil {
 		return &Response{Status: fail}
 	}
-	req := NewRequest(args[0], args[1], numOfConsecutiveSeats)
+	req := NewRequest(strings.ToUpper(args[0]), args[1], numOfConsecutiveSeats)
 
 	// route service request
 	var requestStatus error
