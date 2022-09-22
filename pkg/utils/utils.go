@@ -7,7 +7,7 @@ import (
 )
 
 func ReadJSONFile(filename string) ([]byte, error) {
-	jsonFileReader, err := os.Open("init-state.json")
+	jsonFileReader, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}

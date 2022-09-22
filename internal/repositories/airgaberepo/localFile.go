@@ -5,9 +5,15 @@ package airgaberepo
 
 import (
 	"encoding/json"
+	"os"
 
 	"github.com/guergabo/eks-final-round/internal/core/domain"
 	"github.com/guergabo/eks-final-round/pkg/utils"
+)
+
+const (
+	initial string = "init-state.json"
+	current string = "current-state.json"
 )
 
 type localFile struct {
@@ -33,7 +39,12 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 // if current-state.json exists load that
 // if not load init-state.json it is first run
 func loadFile() *domain.Airplane {
-	byteValue := utils.MustRead(utils.ReadJSONFile("init-state.json"))
+	jsonFilePath := initial
+	if _, err := os.Stat("current-state.json"); err == nil {
+		// file exists exists
+		jsonFilePath = current
+	}
+	byteValue := utils.MustRead(utils.ReadJSONFile(jsonFilePath))
 	airplane := domain.NewAirplane()
 	json.Unmarshal(byteValue, airplane)
 	return airplane
