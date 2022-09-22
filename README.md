@@ -12,3 +12,10 @@ cd bin/
 ./airgabe BOOK A0 1 --help --show
 ./airgabe CANCEL A0 1 --help --show
 ```
+
+## Test Expected Output
+```bash 
+make buidl
+cd bin/
+../scripts/test.sh
+```
