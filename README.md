@@ -15,7 +15,7 @@ cd bin/
 
 ### Test Expected Output
 ```bash 
-make buidl
+make build
 cd bin/
 ../scripts/test.sh
 ```
