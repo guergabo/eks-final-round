@@ -27,7 +27,7 @@ func TestHandler(t *testing.T) {
 
 		// too few arguments
 		resp := h.Run(mockArgs)
-		if resp.Status != fail {
+		if resp.Status == success {
 			t.Fatalf("expected FAIL response instead got %s", resp.Status)
 		}
 
