@@ -29,13 +29,12 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 	return nil
 }
 
+// add logic
+// if current-state.json exists load that
+// if not load init-state.json it is first run
 func loadFile() *domain.Airplane {
 	byteValue := utils.MustRead(utils.ReadJSONFile("init-state.json"))
 	airplane := domain.NewAirplane()
 	json.Unmarshal(byteValue, airplane)
 	return airplane
-}
-
-func main() {
-	loadFile()
 }
