@@ -9,8 +9,8 @@ go get github.com/guergabo/eks-final-round
 ```bash 
 make build
 cd bin/
-./airgabe BOOK A0 1 --help --show
-./airgabe CANCEL A0 1 --help --show
+./airgabe BOOK A0 1 --help 
+./airgabe CANCEL A0 1 --help 
 ```
 
 ### Run Tests
