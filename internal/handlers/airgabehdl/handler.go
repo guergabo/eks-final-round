@@ -4,6 +4,7 @@
 package airgabehdl
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -22,11 +23,8 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 
 func (hdl *CLHandler) Run(args []string) *Response {
 	// requires [Action] [Starting Seat] [Number of Consecutive Seats]
-	if len(args) == 0 || containsHelp(args) {
-		return &Response{Status: help}
-	}
-	if len(args) < 3 {
-		return &Response{Status: fail}
+	if len(args) == 0 || containsHelp(args) || len(args) < 3 {
+		return &Response{Status: help + requestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(args)))}
 	}
 
 	// transform command line request into a service request
