@@ -23,7 +23,10 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 
 func (hdl *CLHandler) Run(args []string) *Response {
 	// requires [Action] [Starting Seat] [Number of Consecutive Seats]
-	if len(args) == 0 || containsHelp(args) || len(args) < 3 {
+	if len(args) == 0 || len(args) < 3 {
+		if containsHelp(args) {
+			return &Response{Status: help}
+		}
 		return &Response{Status: help + requestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(args)))}
 	}
 
