@@ -21,6 +21,9 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 
 func (hdl *CLHandler) Run(args []string) *Response {
 	// requires [Action] [Starting Seat] [Number of Consecutive Seats]
+	if len(args) == 0 || containsHelp(args) {
+		return &Response{Status: help}
+	}
 	if len(args) < 3 {
 		return &Response{Status: fail}
 	}
@@ -48,4 +51,14 @@ func (hdl *CLHandler) Run(args []string) *Response {
 		return &Response{Status: fail}
 	}
 	return &Response{Status: success}
+}
+
+// private methods
+func containsHelp(args []string) bool {
+	for _, v := range args {
+		if v == "-h" || v == "--help" {
+			return true
+		}
+	}
+	return false
 }
