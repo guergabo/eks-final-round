@@ -19,3 +19,6 @@ make build
 cd bin/
 ../scripts/test.sh
 ```
+
+### Architecture Overview  
+
