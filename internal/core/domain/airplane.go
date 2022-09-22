@@ -26,7 +26,14 @@ const (
 )
 
 type Airplane struct {
-	Rows map[rowID]Row
+	LastUpdate      string        `json:"last_updated"`
+	Airline         string        `json:"airline"`
+	FlightIdent     string        `json:"flight_ident"`
+	Aircraft        string        `json:"aircraft"`
+	DepartureRegion string        `json:"departure_region"`
+	ArrivalRegion   string        `json:"arrival_region"`
+	Status          string        `json:"status"`
+	Rows            map[rowID]Row `json:"rows"`
 }
 
 func NewAirplane() *Airplane {

@@ -1,5 +1,4 @@
 {
-  "reservation_sys_version": 1.0,
   "last_updated": "2022-09-21 16:48",
   "airline": "airgabe",
   "flight_ident": "M571",
@@ -7,7 +6,6 @@
   "departure_region": "Thu 09:00PM EDT LGA", 
   "arrival_region": "Thu 11:56PM EDT MIA", 
   "status": "scheduled",
-  "airplane": {
     "rows": {
       "A": {
         "seats": [
@@ -571,4 +569,3 @@
       }
     }
   }
-}
