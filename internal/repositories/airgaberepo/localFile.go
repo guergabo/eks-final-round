@@ -58,7 +58,7 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 
 	// check if seat number exits
 	// only have 0-7
-	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 0 || start+numOfConsecutiveSeats > 8) {
+	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 1 || start+numOfConsecutiveSeats > 8) {
 		return errors.New("could not accomdate customer request")
 	}
 
@@ -107,7 +107,7 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 
 	// check if seat number exits
 	// only have 0-7
-	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 0 || start+numOfConsecutiveSeats > 8) {
+	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 1 || start+numOfConsecutiveSeats > 8) {
 		return errors.New("could not accomdate customer request")
 	}
 
