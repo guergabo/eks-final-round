@@ -8,3 +8,5 @@
 ./airgabe BOOK A6 3
 ./airgabe BOOK A8 1
 ./airgabe BOOK U1 1
+
+rm -rf current-state.json
