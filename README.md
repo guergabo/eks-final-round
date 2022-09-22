@@ -13,8 +13,6 @@ cd bin/
 ./airgabe BOOK A0 1  
 ./airgabe CANCEL A0 1 
 ```
-![alt text](https://giphy.com/embed/UYKVF23jjI4FR5Gemy)
-
 
 ### Run Tests
 #### Test Sample Expected Output
