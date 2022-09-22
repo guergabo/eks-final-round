@@ -19,6 +19,5 @@ func main() {
 	argsWithoutProg := os.Args[1:]
 
 	// parse arguments and form request
-	resp := airplaneHandler.Run(argsWithoutProg)
-	fmt.Println(resp.Status)
+	fmt.Println(airplaneHandler.Run(argsWithoutProg).Status)
 }
