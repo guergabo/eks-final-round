@@ -41,6 +41,13 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 	}
 
 	// NEEDS ERROR HANDLING - this should happen in handler !!!!
+	// check if row exists
+	_, isPresent := airplane.Rows[domain.RowID(startingSeat[:1])]
+	if !isPresent {
+		return errors.New("could not accomdate customer request")
+	}
+
+	// all good
 	ri := domain.RowID(startingSeat[:1])
 	desiredRow := airplane.Rows[ri]
 
@@ -49,13 +56,19 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 		return err
 	}
 
+	// check if seat number exits
+	// only have 0-7
+	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 0 || start+numOfConsecutiveSeats > 8) {
+		return errors.New("could not accomdate customer request")
+	}
+
 	// check for availability
 	seats := desiredRow.Seats[start:(start + numOfConsecutiveSeats)]
 	fmt.Println(seats)
 	for i := range seats {
 		fmt.Println(seats[i].Status)
 		if seats[i].Status != domain.Available {
-			return errors.New("could not accomodate customer requests")
+			return errors.New("could not accomodate customer request")
 		}
 	}
 
@@ -79,12 +92,23 @@ func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) er
 	}
 
 	// NEEDS ERROR HANDLING - this should happen in handler !!!!
+	_, isPresent := airplane.Rows[domain.RowID(startingSeat[:1])]
+	if !isPresent {
+		return errors.New("could not accomdate customer request")
+	}
+
 	ri := domain.RowID(startingSeat[:1])
 	desiredRow := airplane.Rows[ri]
 
 	start, err := strconv.Atoi(startingSeat[1:])
 	if err != nil {
 		return errors.New("could not accomodate customer's request - unable to get seat value")
+	}
+
+	// check if seat number exits
+	// only have 0-7
+	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 0 || start+numOfConsecutiveSeats > 8) {
+		return errors.New("could not accomdate customer request")
 	}
 
 	// check for availability
