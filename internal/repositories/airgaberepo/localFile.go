@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"strconv"
 
@@ -34,7 +33,6 @@ func NewLocalFile() *localFile {
 
 // actual file manipulation
 func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) error {
-	log.Println("processing booking request")
 	airplane, err := loadState()
 	if err != nil {
 		return err
