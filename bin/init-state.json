@@ -1,0 +1,571 @@
+{
+  "last_updated": "2022-09-21 16:48",
+  "airline": "airgabe",
+  "flight_ident": "M571",
+  "aircraft": "AG320",
+  "departure_region": "Thu 09:00PM EDT LGA",
+  "arrival_region": "Thu 11:56PM EDT MIA",
+  "status": "scheduled",
+  "rows": {
+    "A": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "B": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "C": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "D": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "E": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "F": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "G": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "H": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "I": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "J": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "K": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "L": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "M": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "N": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "O": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "P": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "Q": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "R": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "S": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    },
+    "T": {
+      "seats": [
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        },
+        {
+          "status": "Available"
+        }
+      ]
+    }
+  }
+}

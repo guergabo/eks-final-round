@@ -1,28 +1,28 @@
 package domain
 
-type rowID string
+type RowID string
 
 const (
-	A rowID = "A"
-	B rowID = "B"
-	C rowID = "C"
-	D rowID = "D"
-	E rowID = "E"
-	F rowID = "F"
-	G rowID = "G"
-	H rowID = "H"
-	I rowID = "I"
-	J rowID = "J"
-	K rowID = "K"
-	L rowID = "L"
-	M rowID = "M"
-	N rowID = "N"
-	O rowID = "O"
-	P rowID = "P"
-	Q rowID = "Q"
-	R rowID = "R"
-	S rowID = "S"
-	T rowID = "T"
+	A RowID = "A"
+	B RowID = "B"
+	C RowID = "C"
+	D RowID = "D"
+	E RowID = "E"
+	F RowID = "F"
+	G RowID = "G"
+	H RowID = "H"
+	I RowID = "I"
+	J RowID = "J"
+	K RowID = "K"
+	L RowID = "L"
+	M RowID = "M"
+	N RowID = "N"
+	O RowID = "O"
+	P RowID = "P"
+	Q RowID = "Q"
+	R RowID = "R"
+	S RowID = "S"
+	T RowID = "T"
 )
 
 type Airplane struct {
@@ -33,7 +33,7 @@ type Airplane struct {
 	DepartureRegion string        `json:"departure_region"`
 	ArrivalRegion   string        `json:"arrival_region"`
 	Status          string        `json:"status"`
-	Rows            map[rowID]Row `json:"rows"`
+	Rows            map[RowID]Row `json:"rows"`
 }
 
 func NewAirplane() *Airplane {
