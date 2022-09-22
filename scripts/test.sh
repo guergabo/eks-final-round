@@ -1,3 +1,4 @@
+./airgabe --help
 ./airgabe BOOK A0 1
 ./airgabe CANCEL A0 1
 ./airgabe BOOK A0 1
