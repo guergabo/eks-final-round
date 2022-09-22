@@ -39,3 +39,59 @@ type Airplane struct {
 func NewAirplane() *Airplane {
 	return &Airplane{}
 }
+
+func (a *Airplane) IsValidRow(letter string) bool {
+	bs := rune(letter[0])
+	ascii := int(bs)
+	// A=65, T=84
+	if ascii >= 65 && ascii <= 84 {
+		return true
+	}
+	return false
+}
+
+func (a *Airplane) AreValidSeats(start int, num int) bool {
+	if (start < 0 || num > 7) || (start+num < 1 || start+num > 8) {
+		return false
+	}
+	return true
+}
+
+func (a *Airplane) AreSeatsAvailable(row RowID, start int, num int) bool {
+	desiredRow := a.Rows[row]
+	seats := desiredRow.Seats[start:(start + num)]
+	for i := range seats {
+		if seats[i].Status != Available {
+			return false
+		}
+	}
+	return true
+}
+
+func (a *Airplane) AreSeatsBooked(row RowID, start int, num int) bool {
+	desiredRow := a.Rows[row]
+	seats := desiredRow.Seats[start:(start + num)]
+	for i := range seats {
+		// get error if you are canceling something that is not booked
+		if seats[i].Status == Available {
+			return false
+		}
+	}
+	return true
+}
+
+func (a *Airplane) ProcessBooking(row RowID, start int, num int) {
+	desiredRow := a.Rows[row]
+	seats := desiredRow.Seats[start:(start + num)]
+	for i := range seats {
+		seats[i].Status = Booked
+	}
+}
+
+func (a *Airplane) ProcessCancellation(row RowID, start int, num int) {
+	desiredRow := a.Rows[row]
+	seats := desiredRow.Seats[start:(start + num)]
+	for i := range seats {
+		seats[i].Status = Available
+	}
+}

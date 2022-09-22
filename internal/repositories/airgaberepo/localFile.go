@@ -37,42 +37,28 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 		return err
 	}
 
-	// NEEDS ERROR HANDLING - this should happen in handler !!!!
-	// check if row exists
-	_, isPresent := airplane.Rows[domain.RowID(startingSeat[:1])]
-	if !isPresent {
-		return errors.New("could not accomdate customer request")
+	// check if row is valid
+	row := startingSeat[:1]
+	if !airplane.IsValidRow(row) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	// all good
-	ri := domain.RowID(startingSeat[:1])
-	desiredRow := airplane.Rows[ri]
-
-	start, err := strconv.Atoi(startingSeat[1:])
+	// check if seat numbers are valid and available
+	desiredSeat, err := strconv.Atoi(startingSeat[1:])
 	if err != nil {
 		return err
 	}
 
-	// check if seat number exits
-	// only have 0-7
-	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 1 || start+numOfConsecutiveSeats > 8) {
-		return errors.New("could not accomdate customer request")
+	if !airplane.AreValidSeats(desiredSeat, numOfConsecutiveSeats) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	// check for availability
-	seats := desiredRow.Seats[start:(start + numOfConsecutiveSeats)]
-	for i := range seats {
-		if seats[i].Status != domain.Available {
-			return errors.New("could not accomodate customer request")
-		}
+	if !airplane.AreSeatsAvailable(domain.RowID(row), desiredSeat, numOfConsecutiveSeats) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	// update availability
-	for i := range seats {
-		seats[i].Status = domain.Booked
-	}
+	airplane.ProcessBooking(domain.RowID(row), desiredSeat, numOfConsecutiveSeats)
 
-	// store new state
 	if err := storeState(current, airplane); err != nil {
 		return err
 	}
@@ -83,44 +69,32 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 func (repo *localFile) Cancel(startingSeat string, numOfConsecutiveSeats int) error {
 	airplane, err := loadState()
 	if err != nil {
-		return errors.New("could not accomodate customer's request - unable to load state file")
+		return err
 	}
 
-	// NEEDS ERROR HANDLING - this should happen in handler !!!!
-	_, isPresent := airplane.Rows[domain.RowID(startingSeat[:1])]
-	if !isPresent {
-		return errors.New("could not accomdate customer request")
+	// check if row is valid
+	row := startingSeat[:1]
+	if !airplane.IsValidRow(row) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	ri := domain.RowID(startingSeat[:1])
-	desiredRow := airplane.Rows[ri]
-
-	start, err := strconv.Atoi(startingSeat[1:])
+	// check if seat numbers are valid and available
+	desiredSeat, err := strconv.Atoi(startingSeat[1:])
 	if err != nil {
-		return errors.New("could not accomodate customer's request - unable to get seat value")
+		return err
 	}
 
-	// check if seat number exits
-	// only have 0-7
-	if (start < 0 || start > 7) || (start+numOfConsecutiveSeats < 1 || start+numOfConsecutiveSeats > 8) {
-		return errors.New("could not accomdate customer request")
+	if !airplane.AreValidSeats(desiredSeat, numOfConsecutiveSeats) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	// check for availability
-	seats := desiredRow.Seats[start:(start + numOfConsecutiveSeats)]
-	for i := range seats {
-		// get error if you are canceling something that is not booked
-		if seats[i].Status == domain.Available {
-			return errors.New("could not accomodate customer's request - seats not available")
-		}
+	// check if seats had actually been booked
+	if !airplane.AreSeatsBooked(domain.RowID(row), desiredSeat, numOfConsecutiveSeats) {
+		return errors.New("could not accomodate customer request")
 	}
 
-	// update availability
-	for i := range seats {
-		seats[i].Status = domain.Available
-	}
+	airplane.ProcessCancellation(domain.RowID(row), desiredSeat, numOfConsecutiveSeats)
 
-	// store new state
 	if err := storeState(current, airplane); err != nil {
 		return errors.New("could not accomodate customer's request - unable to store state")
 	}
