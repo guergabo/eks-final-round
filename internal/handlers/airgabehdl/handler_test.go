@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-// use a mock request
 // mock service
 type MockService struct {
 	MockError error
