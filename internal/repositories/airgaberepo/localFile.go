@@ -6,7 +6,6 @@ package airgaberepo
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"os"
 	"strconv"
 
@@ -62,9 +61,7 @@ func (repo *localFile) Book(startingSeat string, numOfConsecutiveSeats int) erro
 
 	// check for availability
 	seats := desiredRow.Seats[start:(start + numOfConsecutiveSeats)]
-	fmt.Println(seats)
 	for i := range seats {
-		fmt.Println(seats[i].Status)
 		if seats[i].Status != domain.Available {
 			return errors.New("could not accomodate customer request")
 		}
