@@ -26,6 +26,6 @@ go test ./internal/... -cover
 ```
 
 ### Architecture Overview  
-
+![alt text](https://miro.medium.com/max/1400/1*ERYx0IB1pN-5ZX98cKAoUw.png)
 
 
