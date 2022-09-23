@@ -1,11 +1,11 @@
-package airgabehdl
+package dto
 
-type requestStatus string
+type RequestStatus string
 
 const (
-	success requestStatus = "SUCCESS"
-	fail    requestStatus = "FAIL"
-	help    requestStatus = `
+	Success RequestStatus = "SUCCESS"
+	Fail    RequestStatus = "FAIL"
+	Help    RequestStatus = `
 Usage:
 	airgabe [action] [starting seats] [number of consecutive seats]
 
@@ -22,9 +22,9 @@ Flags:
 )
 
 type Response struct {
-	Status requestStatus
+	Status RequestStatus
 }
 
-func NewResponse(ars requestStatus) *Response {
+func NewResponse(ars RequestStatus) *Response {
 	return &Response{Status: ars}
 }

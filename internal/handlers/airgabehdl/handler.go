@@ -5,9 +5,8 @@ package airgabehdl
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 
+	"github.com/guergabo/eks-final-round/internal/core/dto"
 	"github.com/guergabo/eks-final-round/internal/core/ports"
 )
 
@@ -21,38 +20,31 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 	}
 }
 
-func (hdl *CLHandler) Run(args []string) *Response {
-	// requires [Action] [Starting Seat] [Number of Consecutive Seats]
+func (hdl *CLHandler) Run(args []string) *dto.Response {
 	if len(args) < 3 {
 		if containsHelp(args) {
-			return &Response{Status: help}
+			return &dto.Response{Status: dto.Help}
 		}
-		return &Response{Status: help + requestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(args)))}
+		return &dto.Response{Status: dto.Help + dto.RequestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(args)))}
 	}
 
-	// transform command line request into a service request
-	numOfConsecutiveSeats, err := strconv.Atoi(args[2])
-	if err != nil {
-		return &Response{Status: fail}
-	}
-	req := NewRequest(strings.ToUpper(args[0]), args[1], numOfConsecutiveSeats)
+	req := dto.NewRequest(args[0], args[1], args[2])
 
-	// route service request
+	// routing
 	var requestStatus error
-	switch action := requestSubCommand(req.Action); action {
-	case book:
-		requestStatus = hdl.airplaneService.Book(req.StartingSeat, numOfConsecutiveSeats)
-	case cancel:
-		requestStatus = hdl.airplaneService.Cancel(req.StartingSeat, req.NumOfConsecutiveSeats)
+	switch action := dto.RequestSubCommand(req.Action); action {
+	case dto.Book:
+		requestStatus = hdl.airplaneService.Book(req)
+	case dto.Cancel:
+		requestStatus = hdl.airplaneService.Cancel(req)
 	default:
-		return &Response{Status: fail}
+		return &dto.Response{Status: dto.Fail}
 	}
 
-	// response to customer
 	if requestStatus != nil {
-		return &Response{Status: fail}
+		return &dto.Response{Status: dto.Fail}
 	}
-	return &Response{Status: success}
+	return &dto.Response{Status: dto.Success}
 }
 
 // private methods

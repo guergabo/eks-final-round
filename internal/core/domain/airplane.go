@@ -40,23 +40,7 @@ func NewAirplane() *Airplane {
 	return &Airplane{}
 }
 
-func (a *Airplane) IsValidRow(letter string) bool {
-	bs := rune(letter[0])
-	ascii := int(bs)
-	// A=65, T=84
-	if ascii >= 65 && ascii <= 84 {
-		return true
-	}
-	return false
-}
-
-func (a *Airplane) AreValidSeats(start int, num int) bool {
-	if (start < 0 || num > 7) || (start+num < 1 || start+num > 8) {
-		return false
-	}
-	return true
-}
-
+// need to check file for this stuff
 func (a *Airplane) AreSeatsAvailable(row RowID, start int, num int) bool {
 	desiredRow := a.Rows[row]
 	seats := desiredRow.Seats[start:(start + num)]

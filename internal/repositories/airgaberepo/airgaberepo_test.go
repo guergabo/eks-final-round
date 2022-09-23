@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/guergabo/eks-final-round/internal/core/domain"
-	"github.com/guergabo/eks-final-round/internal/handlers/airgabehdl"
 )
 
 func TestBookSeatsScenarioSimple(t *testing.T) {
@@ -13,14 +12,14 @@ func TestBookSeatsScenarioSimple(t *testing.T) {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// "If a customer wants to reserve multiple seats together in the same row, we should be able to accommodate that or tell the customer it's not possible" //
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		mockReq := airgabehdl.Request{
-			Action:                "BOOK",
-			StartingSeat:          "A0",
+		mockReq := &domain.Booking{
+			Row:                   domain.A,
+			StartingRowIndex:      0,
 			NumOfConsecutiveSeats: 3,
 		}
 
 		mockLf := NewLocalFile()
-		if err := mockLf.Book(mockReq.StartingSeat, mockReq.NumOfConsecutiveSeats); err != nil {
+		if err := mockLf.Book(mockReq); err != nil {
 			t.Fatalf("unexpected error: %s", err)
 		}
 
@@ -40,14 +39,14 @@ func TestBookSeatsScenarioSimple(t *testing.T) {
 		///////////////////////////////////////////////////////////////
 		// "A given seat cannot be reserved by more than one person" //
 		///////////////////////////////////////////////////////////////
-		mockReq = airgabehdl.Request{
-			Action:                "BOOK",
-			StartingSeat:          "A2",
+		mockReq = &domain.Booking{
+			Row:                   domain.A,
+			StartingRowIndex:      2,
 			NumOfConsecutiveSeats: 3,
 		}
 
 		mockLf = NewLocalFile()
-		if err := mockLf.Book(mockReq.StartingSeat, mockReq.NumOfConsecutiveSeats); err == nil {
+		if err := mockLf.Book(mockReq); err == nil {
 			t.Fatal("expected to handle error")
 		}
 
@@ -71,14 +70,14 @@ func TestBookSeatsScenarioSimple(t *testing.T) {
 		//////////////////////////////////////////////////////////////////////////////////////////
 		// "If a customer cancels their reservation, the seat is available for reserving again" //
 		//////////////////////////////////////////////////////////////////////////////////////////
-		mockReq = airgabehdl.Request{
-			Action:                "BOOK",
-			StartingSeat:          "A1",
+		mockCancelReq := &domain.Cancellation{
+			Row:                   domain.A,
+			StartingRowIndex:      1,
 			NumOfConsecutiveSeats: 2,
 		}
 
 		mockLf = NewLocalFile()
-		if err := mockLf.Cancel(mockReq.StartingSeat, mockReq.NumOfConsecutiveSeats); err != nil {
+		if err := mockLf.Cancel(mockCancelReq); err != nil {
 			t.Fatalf("unexpected error %s", err)
 		}
 

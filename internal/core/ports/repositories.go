@@ -1,6 +1,8 @@
 package ports
 
+import "github.com/guergabo/eks-final-round/internal/core/domain"
+
 type AirplaneRepository interface {
-	Book(startingSeat string, numOfConsecutiveSeats int) error
-	Cancel(startingSeat string, numOfConsecutiveSeats int) error
+	Book(book *domain.Booking) error
+	Cancel(cancel *domain.Cancellation) error
 }

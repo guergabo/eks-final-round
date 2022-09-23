@@ -2,7 +2,10 @@ package airgabehdl
 
 import (
 	"errors"
+	"fmt"
 	"testing"
+
+	"github.com/guergabo/eks-final-round/internal/core/dto"
 )
 
 // mock service
@@ -10,34 +13,33 @@ type MockService struct {
 	MockError error
 }
 
-func (ms *MockService) Book(startingSeat string, numOfConsecutiveSeats int) error {
+func (ms *MockService) Book(req *dto.Request) error {
 	return ms.MockError
 }
 
-func (ms *MockService) Cancel(startingSeat string, numOfConsecutiveSeats int) error {
+func (ms *MockService) Cancel(req *dto.Request) error {
 	return ms.MockError
 }
 
 func TestHandler(t *testing.T) {
-	t.Run("Argument soft validation issues", func(t *testing.T) {
-		mockArgs := []string{"BOOK", "A1"}
+	t.Run("Help Requests or too few arguments", func(t *testing.T) {
+		mockArgs := []string{}
 		mockSvc := MockService{MockError: nil}
 
 		h := NewCLHandler(&mockSvc)
 
-		// too few arguments
+		// no arguments at all
 		resp := h.Run(mockArgs)
-		if resp.Status == success {
-			t.Fatalf("expected FAIL response instead got %s", resp.Status)
+		if resp.Status != (dto.Help + dto.RequestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(mockArgs)))) {
+			t.Fatalf("expected Help response instead got %s", resp.Status)
 		}
 
-		// consecutive seats argument is not a valid number
-		mockArgs = append(mockArgs, "1t5")
+		// help flag found
+		mockArgs = append(mockArgs, "--help")
 		resp = h.Run(mockArgs)
-		if resp.Status != fail {
-			t.Fatalf("expected FAIL response instead got %s", resp.Status)
+		if resp.Status != dto.Help {
+			t.Fatalf("expected Help response instead got %s", resp.Status)
 		}
-
 	})
 
 	t.Run("Successful requests", func(t *testing.T) {
@@ -48,34 +50,34 @@ func TestHandler(t *testing.T) {
 
 		// successful book
 		resp := h.Run(mockArgs)
-		if resp.Status != success {
+		if resp.Status != dto.Success {
 			t.Fatalf("expected SUCCESS response instead got %s", resp.Status)
 		}
 
 		// successful cancel
 		mockArgs[0] = "CANCEL"
 		resp = h.Run(mockArgs)
-		if resp.Status != success {
+		if resp.Status != dto.Success {
 			t.Fatalf("expected SUCCESS response instead got %s", resp.Status)
 		}
 	})
 
 	t.Run("Failed requests", func(t *testing.T) {
-		mockArgs := []string{"BOOK", "A1", "1"}
+		mockArgs := []string{"BOOK", "U1", "1"}
 		mockSvc := MockService{MockError: errors.New("something went wrong")}
 
 		h := NewCLHandler(&mockSvc)
 
 		// unsuccessful book
 		resp := h.Run(mockArgs)
-		if resp.Status != fail {
+		if resp.Status != dto.Fail {
 			t.Fatalf("expected FAIL response instead got %s", resp.Status)
 		}
 
 		// unsuccessful cancel
 		mockArgs[0] = "CANCEL"
 		resp = h.Run(mockArgs)
-		if resp.Status != fail {
+		if resp.Status != dto.Fail {
 			t.Fatalf("expected FAIL response instead got %s", resp.Status)
 		}
 	})
