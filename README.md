@@ -33,6 +33,7 @@ go test ./internal/... -cover
 ├── bin
 │   ├── README.md
 │   ├── airgabe
+│   ├── airgabe.log
 │   └── init-state.json
 ├── cmd
 │   ├── README.md
@@ -73,6 +74,7 @@ go test ./internal/... -cover
 ├── pkg
 │   ├── README.md
 │   ├── logger
+│   │   └── logger.go
 │   └── utils
 │       ├── utils.go
 │       └── utils_test.go
