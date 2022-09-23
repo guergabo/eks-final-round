@@ -4,6 +4,8 @@ import (
 	"errors"
 	"strconv"
 	"strings"
+
+	"github.com/guergabo/eks-final-round/internal/core/domain"
 )
 
 type RequestSubCommand string
@@ -28,55 +30,55 @@ func NewRequest(action string, startingSeating string, numOfConsecutiveSeats str
 	}
 }
 
-func (r *Request) ValidBookingRequest() error {
+func (r *Request) ValidBookingRequest() (*domain.ActionConfig, error) {
 	// check if row is valid - making row case insensitive
 	row := strings.ToUpper(r.StartingSeat[:1])
 	if !IsValidRow(row) {
-		return errors.New("row is not valid")
+		return nil, errors.New("row is not valid")
 	}
 
 	// check if seat numbers are valid and available
 	startingSeatNum, err := strconv.Atoi(r.StartingSeat[1:])
 	if err != nil {
-		return errors.New("starting seat number is not valid")
+		return nil, errors.New("starting seat number is not valid")
 	}
 
 	// changing number
 	numOfConsecutiveSeats, err := strconv.Atoi(r.NumOfConsecutiveSeats)
 	if err != nil {
-		return errors.New("could not accomodate number of seats")
+		return nil, errors.New("could not accomodate number of seats")
 	}
 
 	if !AreValidSeats(startingSeatNum, numOfConsecutiveSeats) {
-		return errors.New("seats are not valid")
+		return nil, errors.New("seats are not valid")
 	}
 
-	return nil
+	return domain.NewActionConfig(domain.RowID(row), startingSeatNum, numOfConsecutiveSeats), nil
 }
 
-func (r *Request) ValidCancellationRequest() error {
+func (r *Request) ValidCancellationRequest() (*domain.ActionConfig, error) {
 	// check if row is valid - case insensitive
 	row := strings.ToUpper(r.StartingSeat[:1])
 	if !IsValidRow(row) {
-		return errors.New("could not accomodate customer request")
+		return nil, errors.New("could not accomodate customer request")
 	}
 
 	// check if seat numbers are valid and available
 	startingSeatNum, err := strconv.Atoi(r.StartingSeat[1:])
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	numOfConsecutiveSeats, err := strconv.Atoi(r.NumOfConsecutiveSeats)
 	if err != nil {
-		return errors.New("could not accomodate customer request")
+		return nil, errors.New("could not accomodate customer request")
 	}
 
 	if !AreValidSeats(startingSeatNum, numOfConsecutiveSeats) {
-		return errors.New("could not accomodate customer request")
+		return nil, errors.New("could not accomodate customer request")
 	}
 
-	return nil
+	return domain.NewActionConfig(domain.RowID(row), startingSeatNum, numOfConsecutiveSeats), nil
 }
 
 // private methods

@@ -6,10 +6,10 @@ type Cancellation struct {
 	NumOfConsecutiveSeats int
 }
 
-func NewCancellation(row RowID, start int, num int) *Cancellation {
+func NewCancellation(action *ActionConfig) *Cancellation {
 	return &Cancellation{
-		Row:                   row,
-		StartingRowIndex:      start,
-		NumOfConsecutiveSeats: num,
+		Row:                   action.Row,
+		StartingRowIndex:      action.StartingRowIndex,
+		NumOfConsecutiveSeats: action.NumOfConsecutiveSeats,
 	}
 }

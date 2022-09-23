@@ -6,10 +6,10 @@ type Booking struct {
 	NumOfConsecutiveSeats int
 }
 
-func NewBooking(row RowID, start int, num int) *Booking {
+func NewBooking(action *ActionConfig) *Booking {
 	return &Booking{
-		Row:                   row,
-		StartingRowIndex:      start,
-		NumOfConsecutiveSeats: num,
+		Row:                   action.Row,
+		StartingRowIndex:      action.StartingRowIndex,
+		NumOfConsecutiveSeats: action.NumOfConsecutiveSeats,
 	}
 }
