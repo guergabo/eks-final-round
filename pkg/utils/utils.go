@@ -40,3 +40,7 @@ func WriteJSONFile(filename string, data interface{}) error {
 
 	return nil
 }
+
+func GetCLIArgs() []string {
+	return os.Args[1:]
+}
