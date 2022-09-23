@@ -26,7 +26,6 @@ const (
 )
 
 type Airplane struct {
-	LastUpdate      string        `json:"last_updated"`
 	Airline         string        `json:"airline"`
 	FlightIdent     string        `json:"flight_ident"`
 	Aircraft        string        `json:"aircraft"`
