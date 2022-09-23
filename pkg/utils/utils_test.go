@@ -1,6 +1,9 @@
 package utils
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestUtils(t *testing.T) {
 	t.Run("Write and Read JSON", func(t *testing.T) {
@@ -16,5 +19,7 @@ func TestUtils(t *testing.T) {
 		if string(bs) == "mockData" {
 			t.Fatalf("expected value 'mockData' instaad got '%s'", string(bs))
 		}
+
+		os.Remove("test.json")
 	})
 }
