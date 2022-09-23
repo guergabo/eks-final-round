@@ -4,10 +4,12 @@
 package airgabehdl
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/guergabo/eks-final-round/internal/core/dto"
 	"github.com/guergabo/eks-final-round/internal/core/ports"
+	"github.com/guergabo/eks-final-round/pkg/logger"
 )
 
 type CLHandler struct {
@@ -38,12 +40,15 @@ func (hdl *CLHandler) Run(args []string) *dto.Response {
 	case dto.Cancel:
 		requestStatus = hdl.airplaneService.Cancel(req)
 	default:
-		return &dto.Response{Status: dto.Fail}
+		requestStatus = errors.New("Subcommand not recognized")
 	}
 
 	if requestStatus != nil {
+		logger.Info("Request: " + req.Action + " " + req.StartingSeat + " " + req.NumOfConsecutiveSeats + " " + "Status: FAIL")
 		return &dto.Response{Status: dto.Fail}
 	}
+
+	logger.Info("Request: " + req.Action + " " + req.StartingSeat + " " + req.NumOfConsecutiveSeats + " " + "Status: SUCCESS")
 	return &dto.Response{Status: dto.Success}
 }
 
