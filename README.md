@@ -15,16 +15,70 @@ cd bin/
 ```
 
 ### Run Tests
-#### Test Sample Expected Output
+##### Test Sample Expected Output
 ```bash 
 make build
 cd bin/
 ../scripts/test.sh
 ```
-#### Unit Test Output
+##### Unit Test Output
 ```bash
 go test ./internal/... -cover
 ```
-
-### Hexagonal Architecture Overview  
+### Project File Structure  
+```bash
+.
+├── Makefile
+├── README.md
+├── bin
+│   ├── README.md
+│   ├── airgabe
+│   └── init-state.json
+├── cmd
+│   ├── README.md
+│   └── airgabe
+│       └── main.go
+├── go.mod
+├── internal
+│   ├── README.md
+│   ├── core
+│   │   ├── domain
+│   │   │   ├── actionConfig.go
+│   │   │   ├── airplane.go
+│   │   │   ├── booking.go
+│   │   │   ├── cancellation.go
+│   │   │   ├── domain_test.go
+│   │   │   ├── row.go
+│   │   │   └── seat.go
+│   │   ├── dto
+│   │   │   ├── dto_test.go
+│   │   │   ├── request.go
+│   │   │   └── response.go
+│   │   ├── ports
+│   │   │   ├── repositories.go
+│   │   │   └── services.go
+│   │   └── services
+│   │       └── airgabesrv
+│   │           ├── service.go
+│   │           └── service_test.go
+│   ├── handlers
+│   │   └── airgabehdl
+│   │       ├── handler.go
+│   │       └── handler_test.go
+│   └── repositories
+│       └── airgaberepo
+│           ├── airgaberepo_test.go
+│           ├── init-state.json
+│           └── localFile.go
+├── pkg
+│   ├── README.md
+│   ├── logger
+│   └── utils
+│       ├── utils.go
+│       └── utils_test.go
+└── scripts
+    ├── README.md
+    └── test.sh
+```
+### Architecture Overview  
 ![alt text](https://miro.medium.com/max/1400/1*ERYx0IB1pN-5ZX98cKAoUw.png)
