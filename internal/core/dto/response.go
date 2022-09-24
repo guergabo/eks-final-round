@@ -19,6 +19,7 @@ airgabe CANCEL A1 1
 
 Flags:
 	-h, --help, help for airgabe`
+	Error RequestStatus = "\n\nERROR: requires at least 3 arg(s), only received "
 )
 
 type Response struct {

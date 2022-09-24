@@ -23,11 +23,13 @@ func NewCLHandler(airplaneService ports.AirplaneService) *CLHandler {
 }
 
 func (hdl *CLHandler) Run(args []string) *dto.Response {
+	logger.Info(args)
+
 	if len(args) < 3 {
 		if containsHelp(args) {
 			return &dto.Response{Status: dto.Help}
 		}
-		return &dto.Response{Status: dto.Help + dto.RequestStatus(fmt.Sprintf("\n\nERROR: requires at least 3 arg(s), only received %d", len(args)))}
+		return &dto.Response{Status: dto.Help + dto.Error + dto.RequestStatus(fmt.Sprintf("%d", len(args)))}
 	}
 
 	req := dto.NewRequest(args[0], args[1], args[2])
@@ -40,15 +42,14 @@ func (hdl *CLHandler) Run(args []string) *dto.Response {
 	case dto.Cancel:
 		requestStatus = hdl.airplaneService.Cancel(req)
 	default:
-		requestStatus = errors.New("Subcommand not recognized")
+		requestStatus = errors.New("handler error: subcommand not recognized")
 	}
 
 	if requestStatus != nil {
-		logger.Info("Request: " + req.Action + " " + req.StartingSeat + " " + req.NumOfConsecutiveSeats + " " + "Status: FAIL")
+		logger.Error(requestStatus.Error())
 		return &dto.Response{Status: dto.Fail}
 	}
 
-	logger.Info("Request: " + req.Action + " " + req.StartingSeat + " " + req.NumOfConsecutiveSeats + " " + "Status: SUCCESS")
 	return &dto.Response{Status: dto.Success}
 }
 

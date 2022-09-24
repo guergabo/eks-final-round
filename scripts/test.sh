@@ -11,4 +11,4 @@
 ./airgabe BOOK U1 1
 
 rm -rf current-state.json
-rm -rf airgabe.log
+# rm -rf airgabe.log

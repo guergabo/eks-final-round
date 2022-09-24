@@ -24,7 +24,7 @@ func New(airplaneRepository ports.AirplaneRepository) *service {
 func (srv *service) Book(req *dto.Request) error {
 	actionConfig, err := req.ValidBookingRequest()
 	if err != nil {
-		return errors.New("could not accomodate customer request: " + err.Error())
+		return errors.New("service error: " + err.Error())
 	}
 
 	// transformation of dto to domain object if all is good
@@ -40,7 +40,7 @@ func (srv *service) Book(req *dto.Request) error {
 func (srv *service) Cancel(req *dto.Request) error {
 	actionConfig, err := req.ValidCancellationRequest()
 	if err != nil {
-		return errors.New("could not accomodate customer request")
+		return errors.New("service error: " + err.Error())
 	}
 
 	// transformation of dto to domain object if all is good

@@ -60,22 +60,22 @@ func (r *Request) ValidCancellationRequest() (*domain.ActionConfig, error) {
 	// check if row is valid - case insensitive
 	row := strings.ToUpper(r.StartingSeat[:1])
 	if !IsValidRow(row) {
-		return nil, errors.New("could not accomodate customer request")
+		return nil, errors.New("row is not valid")
 	}
 
 	// check if seat numbers are valid and available
 	startingSeatNum, err := strconv.Atoi(r.StartingSeat[1:])
 	if err != nil {
-		return nil, err
+		return nil, errors.New("starting seat number is not valid")
 	}
 
 	numOfConsecutiveSeats, err := strconv.Atoi(r.NumOfConsecutiveSeats)
 	if err != nil {
-		return nil, errors.New("could not accomodate customer request")
+		return nil, errors.New("could not accomodate number of seats")
 	}
 
 	if !AreValidSeats(startingSeatNum, numOfConsecutiveSeats) {
-		return nil, errors.New("could not accomodate customer request")
+		return nil, errors.New("seats are not valid")
 	}
 
 	return domain.NewActionConfig(domain.RowID(row), startingSeatNum, numOfConsecutiveSeats), nil
