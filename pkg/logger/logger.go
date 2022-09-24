@@ -8,7 +8,7 @@ import (
 
 var filename string = "airgabe.log"
 
-func Info(message []string) {
+func Info(message interface{}) {
 	f, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0660)
 	if err != nil {
 		panic(err)
@@ -19,7 +19,7 @@ func Info(message []string) {
 	log.Println(fmt.Sprintf("Request: %s", message))
 }
 
-func Error(message string) {
+func Error(message interface{}) {
 	f, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0660)
 	if err != nil {
 		panic(err)

@@ -1,0 +1,8 @@
+2022/09/24 15:41:12 Request: []
+2022/09/24 15:41:12 Request: [--help]
+2022/09/24 15:41:12 Request: [BOOK A1 1]
+2022/09/24 15:41:12 Request: [CANCEL A1 1]
+2022/09/24 15:41:12 Request: [BOOK U1 1]
+2022/09/24 15:41:12 ERROR: something went wrong
+2022/09/24 15:41:12 Request: [CANCEL U1 1]
+2022/09/24 15:41:12 ERROR: something went wrong

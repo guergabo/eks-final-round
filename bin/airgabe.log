@@ -1,16 +1,16 @@
-2022/09/24 15:39:37 Request: [--help]
-2022/09/24 15:39:37 Request: [BOOK A0 1]
-2022/09/24 15:39:37 Request: [CANCEL A0 1]
-2022/09/24 15:39:37 Request: [BOOK A0 1]
-2022/09/24 15:39:37 Request: [BOOK A0 1]
-2022/09/24 15:39:37 ERROR: repo error: seats are not available
-2022/09/24 15:39:37 Request: [BOOK A1 1]
-2022/09/24 15:39:37 Request: [BOOK A2 4]
-2022/09/24 15:39:37 Request: [BOOK A5 1]
-2022/09/24 15:39:37 ERROR: repo error: seats are not available
-2022/09/24 15:39:37 Request: [BOOK A6 3]
-2022/09/24 15:39:37 ERROR: service error: seats are not valid
-2022/09/24 15:39:38 Request: [BOOK A8 1]
-2022/09/24 15:39:38 ERROR: service error: seats are not valid
-2022/09/24 15:39:38 Request: [BOOK U1 1]
-2022/09/24 15:39:38 ERROR: service error: row is not valid
+2022/09/24 15:56:55 Request: [--help]
+2022/09/24 15:56:55 Request: [BOOK A0 1]
+2022/09/24 15:56:55 Request: [CANCEL A0 1]
+2022/09/24 15:56:55 Request: [BOOK A0 1]
+2022/09/24 15:56:55 Request: [BOOK A0 1]
+2022/09/24 15:56:55 ERROR: repo error: seats are not available
+2022/09/24 15:56:55 Request: [BOOK A1 1]
+2022/09/24 15:56:55 Request: [BOOK A2 4]
+2022/09/24 15:56:55 Request: [BOOK A5 1]
+2022/09/24 15:56:55 ERROR: repo error: seats are not available
+2022/09/24 15:56:55 Request: [BOOK A6 3]
+2022/09/24 15:56:55 ERROR: service error: seats are not valid
+2022/09/24 15:56:55 Request: [BOOK A8 1]
+2022/09/24 15:56:55 ERROR: service error: seats are not valid
+2022/09/24 15:56:55 Request: [BOOK U1 1]
+2022/09/24 15:56:55 ERROR: service error: row is not valid
