@@ -6,6 +6,7 @@ package airgabehdl
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/guergabo/eks-final-round/internal/core/dto"
 	"github.com/guergabo/eks-final-round/internal/core/ports"
@@ -36,7 +37,7 @@ func (hdl *CLHandler) Run(args []string) *dto.Response {
 
 	// routing
 	var requestStatus error
-	switch action := dto.RequestSubCommand(req.Action); action {
+	switch action := dto.RequestSubCommand(strings.ToUpper(req.Action)); action {
 	case dto.Book:
 		requestStatus = hdl.airplaneService.Book(req)
 	case dto.Cancel:
